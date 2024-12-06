@@ -1,0 +1,106 @@
+﻿<Application x:Class="OPP.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:OPP"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:converters="clr-namespace:OPP.ResourceDictionaries.Converters"
+             xmlns:env="clr-namespace:OPP.Environment;assembly=Resources"
+             StartupUri="Views\Windows\MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+
+            <SolidColorBrush x:Key="ActiveBrush"
+                             Color="{x:Static env:ThemeColorPicker.ActiveColor}" />
+            <SolidColorBrush x:Key="ActiveLightBrush"
+                             Color="{x:Static env:ThemeColorPicker.ActiveLightColor}" />
+            <SolidColorBrush x:Key="InactiveBrush"
+                             Color="{x:Static env:ThemeColorPicker.InactiveColor}" />
+            <SolidColorBrush x:Key="InactiveLightBrush"
+                             Color="{x:Static env:ThemeColorPicker.InactiveLightColor}" />
+
+            <SolidColorBrush x:Key="MaterialDesign.Brush.DataGrid.Selected"
+                             Color="{x:Static env:ThemeColorPicker.InactiveColor}" />
+            <SolidColorBrush x:Key="MaterialDesign.Brush.DataGrid.RowHoverBackground"
+                             Color="{x:Static env:ThemeColorPicker.InactiveLightColor}" />
+
+            <Style TargetType="Button"
+                   BasedOn="{StaticResource MaterialDesignPaperDarkButton}">
+                <Setter Property="Margin"
+                        Value="5" />
+                <Setter Property="Height"
+                        Value="25" />
+                <Setter Property="Padding"
+                        Value="15,2" />
+            </Style>
+
+            <Style TargetType="ScrollBar"
+                   BasedOn="{StaticResource MaterialDesignScrollBarMinimal}" />
+
+            <Style TargetType="TabItem"
+                   BasedOn="{StaticResource MaterialDesignTabItem}">
+                <Setter Property="BorderBrush"
+                        Value="Black" />
+                <Setter Property="MinWidth"
+                        Value="10" />
+                <Setter Property="Padding"
+                        Value="0" />
+                <Setter Property="Foreground"
+                        Value="Black" />
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}"
+                                 Value="True">
+                        <Setter Property="Background"
+                                Value="{StaticResource ActiveLightBrush}" />
+                        <Setter Property="BorderBrush"
+                                Value="Black" />
+                        <Setter Property="Foreground"
+                                Value="Black" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+
+            <Style TargetType="DataGrid"
+                   BasedOn="{StaticResource MaterialDesignDataGrid}">
+                <Setter Property="VirtualizingPanel.ScrollUnit"
+                        Value="Pixel" />
+                <Setter Property="VirtualizingPanel.IsVirtualizing"
+                        Value="True" />
+                <Setter Property="Background"
+                        Value="{StaticResource InactiveLightBrush}" />
+                <Setter Property="BorderBrush"
+                        Value="{StaticResource ActiveBrush}" />
+                <Setter Property="BorderThickness"
+                        Value="2" />
+            </Style>
+
+            <Style TargetType="ComboBox"
+                   BasedOn="{StaticResource MaterialDesignComboBox}">
+                <Setter Property="materialDesign:TextFieldAssist.HasClearButton"
+                        Value="True" />
+                <EventSetter Event="PreviewKeyUp"
+                             Handler="ComboBox_PreviewKeyUp" />
+            </Style>
+
+            <Style x:Key="DataGridComboBox"
+                   TargetType="ComboBox"
+                   BasedOn="{StaticResource MaterialDesignDataGridComboBox}">
+                <Setter Property="materialDesign:TextFieldAssist.HasClearButton"
+                        Value="True" />
+                <Setter Property="StaysOpenOnEdit"
+                        Value="True" />
+                <EventSetter Event="PreviewKeyUp"
+                             Handler="ComboBox_PreviewKeyUp" />
+            </Style>
+
+            <ResourceDictionary.MergedDictionaries>
+                <materialDesign:CustomColorTheme BaseTheme="Light"
+                                                 PrimaryColor="{x:Static env:ThemeColorPicker.ActiveColor}"
+                                                 SecondaryColor="{x:Static env:ThemeColorPicker.InactiveColor}" />
+
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Defaults.xaml" />
+                <ResourceDictionary Source="/ResourceDictionaries/Resources.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

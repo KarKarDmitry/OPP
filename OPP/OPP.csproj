@@ -1,0 +1,55 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\Add.png" />
+    <None Remove="Assets\Confirm.png" />
+    <None Remove="Assets\Delete.png" />
+    <None Remove="Assets\Dots.png" />
+    <None Remove="Assets\Edit.png" />
+    <None Remove="Assets\icon.ico" />
+    <None Remove="Assets\Image.png" />
+    <None Remove="Assets\Left.png" />
+    <None Remove="Assets\lock.svg" />
+    <None Remove="Assets\OpenExternally.png" />
+    <None Remove="Assets\Right.png" />
+    <None Remove="Assets\Save.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Costura.Fody" Version="6.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="MaterialDesignThemes" Version="5.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Model\Model\Model.csproj" />
+    <ProjectReference Include="..\..\..\Resources\Resources\Resources.csproj" />
+    <ProjectReference Include="..\..\..\ViewModel\ViewModel\ViewModel.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\Add.png" />
+    <Resource Include="Assets\Confirm.png" />
+    <Resource Include="Assets\Delete.png" />
+    <Resource Include="Assets\Dots.png" />
+    <Resource Include="Assets\Edit.png" />
+    <Resource Include="Assets\icon.ico" />
+    <Resource Include="Assets\Image.png" />
+    <Resource Include="Assets\Left.png" />
+    <Resource Include="Assets\lock.svg" />
+    <Resource Include="Assets\OpenExternally.png" />
+    <Resource Include="Assets\Right.png" />
+    <Resource Include="Assets\Save.png" />
+  </ItemGroup>
+
+</Project>

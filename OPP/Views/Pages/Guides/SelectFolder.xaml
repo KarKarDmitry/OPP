@@ -1,0 +1,172 @@
+﻿<Page x:Class="OPP.Views.Pages.Guides.SelectFolder"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:OPP.Views.Pages.Guides"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:permissions="clr-namespace:OPP.Views.Pages.Guides.Permissions"
+      xmlns:props="clr-namespace:OPP"
+      mc:Ignorable="d"
+      d:DesignHeight="450"
+      d:DesignWidth="800"
+      Title="SelectFolder"
+      Background="White"
+      Name="GuidesSelectFolderPage">
+
+    <Page.Resources>
+
+        <Storyboard x:Key="FadeInStoryboard">
+            <DoubleAnimation Storyboard.TargetName="ContentFrame"
+                             Storyboard.TargetProperty="Opacity"
+                             From="0"
+                             To="1"
+                             Duration="0:0:0.2" />
+        </Storyboard>
+        <Storyboard x:Key="FadeOutStoryboard">
+            <DoubleAnimation Storyboard.TargetName="ContentFrame"
+                             Storyboard.TargetProperty="Opacity"
+                             From="1"
+                             To="0"
+                             Duration="0:0:0.2" />
+        </Storyboard>
+    </Page.Resources>
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="2" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                          Grid.Column="0">
+                <StackPanel Orientation="Horizontal">
+                    <RadioButton Name="GlobalGuides"
+                                 GroupName="Folders"
+                                 Click="GlobalGuides_Click"
+                                 Style="{StaticResource TabRadioButtonBottom}">
+                        <RadioButton.Content>
+                            <Grid>
+                                <TextBlock Text="Общий справочник"
+                                           FontWeight="Bold" />
+                            </Grid>
+                        </RadioButton.Content>
+                    </RadioButton>
+                    <Menu Grid.Column="1"
+                          VerticalAlignment="Top">
+                        <MenuItem Header="Справочники"
+                                  Height="30"
+                                  FontWeight="Bold">
+
+                            <RadioButton Name="Packagings"
+                                         GroupName="Folders"
+                                         Click="Packagings_Click"
+                                         Style="{StaticResource TabRadioButtonBottom}"
+                                         Content="УКУП" />
+                            <RadioButton Name="Locks"
+                                         GroupName="Folders"
+                                         Click="Locks_Click"
+                                         Style="{StaticResource TabRadioButtonBottom}"
+                                         Content="Замки" />
+                            <RadioButton Name="Assemblies"
+                                         GroupName="Folders"
+                                         Click="Assemblies_Click"
+                                         Style="{StaticResource TabRadioButtonBottom}"
+                                         Content="Сборки" />
+                            <RadioButton Name="Parts"
+                                         GroupName="Folders"
+                                         Click="Parts_Click"
+                                         Style="{StaticResource TabRadioButtonBottom}"
+                                         Content="Детали" />
+                            <RadioButton Name="Blanks"
+                                         GroupName="Folders"
+                                         Click="Blanks_Click"
+                                         Style="{StaticResource TabRadioButtonBottom}"
+                                         Content="Заготовки" />
+                            <RadioButton Name="Materials"
+                                         GroupName="Folders"
+                                         Click="Materials_Click"
+                                         Style="{StaticResource TabRadioButtonBottom}"
+                                         Content="Материалы" />
+                        </MenuItem>
+                    </Menu>
+
+                    <RadioButton Name="Movements"
+                                 GroupName="Folders"
+                                 Click="Movements_Click"
+                                 Style="{StaticResource TabRadioButtonBottom}"
+                                 Content="Движения" />
+
+                </StackPanel>
+            </ScrollViewer>
+
+
+
+            <Menu Grid.Column="1"
+                  VerticalAlignment="Top">
+                <MenuItem Header="Еще"
+                          Height="30"
+                          FontWeight="Bold">
+                    <RadioButton Name="Boxes"
+                                 GroupName="Folders"
+                                 Click="Boxes_Click"
+                                 Style="{StaticResource TabRadioButtonBottom}"
+                                 Content="Ящики" />
+                    <RadioButton Name="Coatings"
+                                 GroupName="Folders"
+                                 Click="Coatings_Click"
+                                 Style="{StaticResource TabRadioButtonBottom}"
+                                 Content="Покрытия" />
+                    <RadioButton Name="Kits"
+                                 GroupName="Folders"
+                                 Click="Kits_Click"
+                                 Style="{StaticResource TabRadioButtonBottom}"
+                                 Content="Комплекты" />
+                    <RadioButton Name="Labels"
+                                 GroupName="Folders"
+                                 Click="Labels_Click"
+                                 Style="{StaticResource TabRadioButtonBottom}"
+                                 Content="Этикетки" />
+                    <RadioButton Name="Manuals"
+                                 GroupName="Folders"
+                                 Click="Manuals_Click"
+                                 Style="{StaticResource TabRadioButtonBottom}"
+                                 Content="Руководства" />
+                    <RadioButton Name="Packages"
+                                 GroupName="Folders"
+                                 Click="Packages_Click"
+                                 Style="{StaticResource TabRadioButtonBottom}"
+                                 Content="Упаковки" />
+                    <RadioButton Name="Sectors"
+                                 GroupName="Folders"
+                                 Click="Sectors_Click"
+                                 Style="{StaticResource TabRadioButtonBottom}"
+                                 Content="Участки" />
+                    <RadioButton Name="Remainings"
+                                 GroupName="Folders"
+                                 Click="Remainings_Click"
+                                 Style="{StaticResource TabRadioButtonBottom}"
+                                 Content="Минимальные остатки" />
+                </MenuItem>
+            </Menu>
+        </Grid>
+
+
+        <Label Background="Black"
+               Grid.Row="1"
+               Visibility="Hidden" />
+
+        <Frame x:Name="ContentFrame"
+               Grid.Row="2"
+               NavigationUIVisibility="Hidden"
+               Opacity="1" />
+    </Grid>
+</Page>

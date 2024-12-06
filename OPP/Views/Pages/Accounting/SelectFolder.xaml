@@ -1,0 +1,100 @@
+﻿<Page x:Class="OPP.Views.Pages.Accounting.SelectFolder"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:OPP.Views.Pages.Accounting"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="SelectFolder"
+      Name="AccountingSelectFolderPage"
+      Background="White">
+
+    <Page.Resources>
+
+        <Storyboard x:Key="FadeInStoryboard">
+            <DoubleAnimation Storyboard.TargetName="ContentFrame"
+                             Storyboard.TargetProperty="Opacity"
+                             From="0"
+                             To="1"
+                             Duration="0:0:0.2" />
+        </Storyboard>
+        <Storyboard x:Key="FadeOutStoryboard">
+            <DoubleAnimation Storyboard.TargetName="ContentFrame"
+                             Storyboard.TargetProperty="Opacity"
+                             From="1"
+                             To="0"
+                             Duration="0:0:0.2" />
+        </Storyboard>
+    </Page.Resources>
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="2" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                          Grid.Column="0">
+                <StackPanel Orientation="Horizontal">
+                    <RadioButton Name="GlobalGuides"
+                                 GroupName="Folders"
+                                 Click="GlobalGuides_Click"
+                                 Style="{StaticResource TabRadioButtonBottom}">
+                        <RadioButton.Content>
+                            <Grid>
+                                <TextBlock Text="Общий справочник"
+                                           FontWeight="Bold" />
+                            </Grid>
+                        </RadioButton.Content>
+                    </RadioButton>
+
+                    <Menu Grid.Column="1"
+                          VerticalAlignment="Top">
+                        <MenuItem Header="Цены"
+                                  Height="30"
+                                  FontWeight="Bold">
+                            <RadioButton Name="MaterialPrices"
+                                         GroupName="Folders"
+                                         Click="MaterialPrices_Click"
+                                         Style="{StaticResource TabRadioButtonBottom}"
+                                         Content="Цены на материалы" />
+                        </MenuItem>
+                    </Menu>
+
+                </StackPanel>
+            </ScrollViewer>
+
+            <Menu Grid.Column="1"
+                  VerticalAlignment="Top">
+                <MenuItem Header="Еще"
+                          Height="30"
+                          FontWeight="Bold">
+                    <RadioButton Name="Boxes"
+                                 GroupName="Folders"
+                                 Click="Boxes_Click"
+                                 Style="{StaticResource TabRadioButtonBottom}"
+                                 Content="Ящики" />
+                </MenuItem>
+            </Menu>
+        </Grid>
+
+
+        <Label Background="Black"
+               Grid.Row="1"
+               Visibility="Hidden" />
+
+        <Frame x:Name="ContentFrame"
+               Grid.Row="2"
+               NavigationUIVisibility="Hidden"
+               Opacity="1" />
+    </Grid>
+</Page>
