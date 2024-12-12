@@ -150,5 +150,10 @@ namespace OPP.Views.Pages.Guides
         {
             NavigationManager.Navigate(App.GetPage("GuidesMovementsPage"));
         }
+
+        private void Plans_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationManager.Navigate(App.GetPage("GuidesPlansPage"));
+        }
     }
 }

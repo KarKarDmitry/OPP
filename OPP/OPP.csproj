@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <None Remove="Assets\Add.png" />
+    <None Remove="Assets\Cancel.png" />
     <None Remove="Assets\Confirm.png" />
     <None Remove="Assets\Delete.png" />
     <None Remove="Assets\Dots.png" />
@@ -17,6 +18,7 @@
     <None Remove="Assets\icon.ico" />
     <None Remove="Assets\Image.png" />
     <None Remove="Assets\Left.png" />
+    <None Remove="Assets\list.png" />
     <None Remove="Assets\lock.svg" />
     <None Remove="Assets\OpenExternally.png" />
     <None Remove="Assets\Right.png" />
@@ -39,6 +41,7 @@
 
   <ItemGroup>
     <Resource Include="Assets\Add.png" />
+    <Resource Include="Assets\Cancel.png" />
     <Resource Include="Assets\Confirm.png" />
     <Resource Include="Assets\Delete.png" />
     <Resource Include="Assets\Dots.png" />
@@ -46,6 +49,7 @@
     <Resource Include="Assets\icon.ico" />
     <Resource Include="Assets\Image.png" />
     <Resource Include="Assets\Left.png" />
+    <Resource Include="Assets\List.png" />
     <Resource Include="Assets\lock.svg" />
     <Resource Include="Assets\OpenExternally.png" />
     <Resource Include="Assets\Right.png" />

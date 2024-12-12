@@ -36,11 +36,6 @@ namespace OPP.Views.Pages.Accounting.Edits
             DataContext = new EditMaterialPricesViewModel(MaterialPrice);
         }
 
-        protected override void DisposeResources()
-        {
-            viewModel = null;
-        }
-
         private void EditMaterial_Click(object sender, RoutedEventArgs e)
         {
             if (viewModel?.SelectedMaterial == null) return;

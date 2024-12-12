@@ -12,6 +12,7 @@ using OPP.AppData.Guides;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
+using OPP.AppData.GroupClasses;
 
 namespace OPP
 {
@@ -39,6 +40,8 @@ namespace OPP
             RegisterPage("AccoutingMaterialPricesPage", () => new MaterialPrices());
             RegisterPage("GuidesRemainingsPage", () => new Remainings());
             RegisterPage("GuidesMovementsPage", () => new Movements());
+            RegisterPage("GuidesPlansPage", () => new Plans());
+
         }
 
         private static Dictionary<string, Func<Page>> PageConstructors = new Dictionary<string, Func<Page>>();
@@ -46,14 +49,12 @@ namespace OPP
 
         public static Page GetNavigationPage<NavigationPageType>(string name) where NavigationPageType : Page, new()
         {
-            // Если страница с таким именем уже существует, возвращаем её
             if (NavigationPages.ContainsKey(name))
             {
                 return NavigationPages[name];
             }
             else
             {
-                // Если страницы нет, создаём новую и добавляем в словарь
                 var newPage = new NavigationPageType();
                 NavigationPages[name] = newPage;
                 return newPage;
@@ -90,8 +91,6 @@ namespace OPP
             {
                 if (sender is ComboBox comboBox)
                 {
-
-                    // Получаем тип элементов в ItemsSource
                     var itemType = comboBox.ItemsSource.Cast<object>().FirstOrDefault()?.GetType();
 
                     if (comboBox.Text == itemType?.FullName) comboBoxSearchText = string.Empty;
@@ -99,32 +98,26 @@ namespace OPP
                     comboBoxSearchText += GetCharFromKey(e.Key, e.KeyboardDevice.Modifiers);
                     comboBox.Text = comboBoxSearchText;
 
-                    // Если элемент в ItemsSource найден, получаем тип
                     if (itemType != null)
                     {
-                        // Получаем тип базового класса AbstractGuides<T>
                         var baseType = itemType.BaseType;
 
-                        // Проверяем, что базовый тип это AbstractGuides<T>
                         if (baseType != null && baseType.IsGenericType && baseType.GetGenericTypeDefinition() == typeof(AbstractGuides<>))
                         {
-                            // Получаем метод GetAll через рефлексию, предполагая что он есть в AbstractGuides<T>
                             var method = baseType.GetMethod("GetAll", BindingFlags.Public | BindingFlags.Static);
 
                             if (method != null)
                             {
-                                // Если строка поиска пуста, возвращаем все элементы через метод GetAll
                                 if (string.IsNullOrEmpty(comboBoxSearchText))
                                 {
                                     var allItems = method.Invoke(null, null) as IEnumerable<object>;
                                     if (allItems != null)
                                     {
-                                        comboBox.ItemsSource = allItems.ToList(); // Обновляем ItemsSource
+                                        comboBox.ItemsSource = allItems.ToList(); 
                                     }
                                 }
                                 else
                                 {
-                                    // Фильтруем элементы по всем свойствам
                                     var allItems = method.Invoke(null, null) as IEnumerable<object>;
 
                                     var filteredItems = allItems
@@ -137,7 +130,7 @@ namespace OPP
                                     }
                                     else
                                     {
-                                        comboBox.ItemsSource = allItems.ToList(); // Если ничего не нашли, показываем все
+                                        comboBox.ItemsSource = allItems.ToList(); 
                                     }
                                 }
 
@@ -167,30 +160,24 @@ namespace OPP
 
         public static string GetCharFromKey(Key key, ModifierKeys modifiers)
         {
-            // Получение виртуального кода клавиши
             uint virtualKeyCode = (uint)KeyInterop.VirtualKeyFromKey(key);
             uint scanCode = MapVirtualKey(virtualKeyCode, 0);
 
-            // Состояние клавиш на клавиатуре
             byte[] keyboardState = new byte[256];
             if (!GetKeyboardState(keyboardState))
             {
                 return string.Empty;
             }
 
-            // Учет модификатора Shift
             if ((modifiers & ModifierKeys.Shift) != 0)
             {
-                keyboardState[0x10] = 0x80; // Включаем Shift
+                keyboardState[0x10] = 0x80; 
             }
 
-            // Буфер для символа
             StringBuilder receivingBuffer = new StringBuilder(2);
 
-            // Преобразование клавиши в символ с учетом раскладки
             int result = ToUnicode(virtualKeyCode, scanCode, keyboardState, receivingBuffer, receivingBuffer.Capacity, 0);
 
-            // Если символ успешно преобразован, вернуть его
             return result > 0 ? receivingBuffer.ToString() : string.Empty;
         }
 
@@ -206,11 +193,11 @@ namespace OPP
                 var value = property.GetValue(item)?.ToString();
                 if (!string.IsNullOrEmpty(value) && value.ToLower().Contains(searchText))
                 {
-                    return true; // Если найдено совпадение
+                    return true; 
                 }
             }
 
-            return false; // Если ни одно свойство не совпадает
+            return false; 
         }
 
         #endregion

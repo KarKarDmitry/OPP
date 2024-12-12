@@ -26,6 +26,7 @@
         </Grid.RowDefinitions>
 
         <TextBox Text="{Binding Path=DataContext.SearchString, Mode=TwoWay, RelativeSource={RelativeSource AncestorType=Page}}" 
+                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
                  Padding="4"
                  Margin="2"
                  mt:TextFieldAssist.HasClearButton="True"
@@ -50,7 +51,8 @@
                      Padding="10,0"
                      HorizontalAlignment="Center">
 
-                <TabControl ItemsSource="{Binding Path=DataContext.PackagingRemainingsView, RelativeSource={RelativeSource AncestorType=Page}}">
+                <TabControl ItemsSource="{Binding Path=DataContext.PackagingRemainingsView, RelativeSource={RelativeSource AncestorType=Page}}"
+                            Style="{StaticResource MaterialDesignUniformTabControl}">
 
                     <TabControl.ItemTemplate>
                         <DataTemplate>

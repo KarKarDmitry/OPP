@@ -105,6 +105,12 @@
                                  Style="{StaticResource TabRadioButtonBottom}"
                                  Content="Движения" />
 
+                    <RadioButton Name="Plans"
+                                 GroupName="Folders"
+                                 Click="Plans_Click"
+                                 Style="{StaticResource TabRadioButtonBottom}"
+                                 Content="Планы" />
+
                 </StackPanel>
             </ScrollViewer>
 
